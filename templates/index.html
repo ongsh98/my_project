@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            font-size: 20px;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: skyblue;
+            cursor: pointer;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>가위바위보 게임</h1>
+    <button onclick="play('scissors')">가위</button>
+    <button onclick="play('rock')">바위</button>
+    <button onclick="play('paper')">보</button>
+    <p id="result"></p>
+    <p id="record">전적: 0승 0무 0패</p>
+    <p id="choice1"></p>
+    <p id="choice2"></p>
+    <p id="choice3"></p>
+    <p id="choice4"></p>
+    <p id="choice5"></p>
+    <p id="choice6"></p>
+    <p id="choice7"></p>
+    <p id="choice8"></p>
+    <p id="choice9"></p>
+    <p id="choice10"></p>
+
+    <script>
+        var wins = 0;
+        var draws = 0;
+        var losses = 0;
+        var recordArray = [];
+        var step
+        for (step = 0; step < 10; step++) {
+            recordArray.push(['', '', '']);
+        }
+
+        function play(userChoice) {
+            var choices = ['rock', 'paper', 'scissors'];
+            var computerChoice = choices[Math.floor(Math.random() * 3)];
+            var result;
+
+            if (userChoice == computerChoice) {
+                result = "무승부!";
+                draws++;
+            } else if ((userChoice == 'rock' && computerChoice == 'scissors') ||
+                (userChoice == 'paper' && computerChoice == 'rock') ||
+                (userChoice == 'scissors' && computerChoice == 'paper')) {
+                result = "당신이 이겼습니다!";
+                wins++;
+            } else {
+                result = "컴퓨터가 이겼습니다!";
+                losses++;
+            }
+
+            recordArray.unshift([userChoice, computerChoice, result])
+
+            document.getElementById("result").innerHTML = "당신: " + userChoice + ", 컴퓨터: " + computerChoice + "<br>" + result;
+            document.getElementById("record").innerHTML = "전적: " + wins + "승 " + draws + "무 " + losses + "패";
+            document.getElementById("choice1").innerHTML = "최근 1경기 - 당신: " + recordArray[0][0] + ", 컴퓨터: " + recordArray[0][1] + ", " + recordArray[0][2]
+            document.getElementById("choice2").innerHTML = "최근 2경기 - 당신: " + recordArray[1][0] + ", 컴퓨터: " + recordArray[1][1] + ", " + recordArray[1][2]
+            document.getElementById("choice3").innerHTML = "최근 3경기 - 당신: " + recordArray[2][0] + ", 컴퓨터: " + recordArray[2][1] + ", " + recordArray[2][2]
+            document.getElementById("choice4").innerHTML = "최근 4경기 - 당신: " + recordArray[3][0] + ", 컴퓨터: " + recordArray[3][1] + ", " + recordArray[3][2]
+            document.getElementById("choice5").innerHTML = "최근 5경기 - 당신: " + recordArray[4][0] + ", 컴퓨터: " + recordArray[4][1] + ", " + recordArray[4][2]
+            document.getElementById("choice6").innerHTML = "최근 6경기 - 당신: " + recordArray[5][0] + ", 컴퓨터: " + recordArray[5][1] + ", " + recordArray[5][2]
+            document.getElementById("choice7").innerHTML = "최근 7경기 - 당신: " + recordArray[6][0] + ", 컴퓨터: " + recordArray[6][1] + ", " + recordArray[6][2]
+            document.getElementById("choice8").innerHTML = "최근 8경기 - 당신: " + recordArray[7][0] + ", 컴퓨터: " + recordArray[7][1] + ", " + recordArray[7][2]
+            document.getElementById("choice9").innerHTML = "최근 9경기 - 당신: " + recordArray[8][0] + ", 컴퓨터: " + recordArray[8][1] + ", " + recordArray[8][2]
+            document.getElementById("choice10").innerHTML = "최근 10경기 - 당신: " + recordArray[9][0] + ", 컴퓨터: " + recordArray[9][1] + ", " + recordArray[9][2]
+        }
+    </script>
+</body>
+
+</html>
